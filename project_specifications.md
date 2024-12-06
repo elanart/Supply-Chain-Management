@@ -22,17 +22,15 @@ The system will be developed using **Nest.js** for backend, **Next.js** for fron
 - Integration with **Momo** and **VNPAY** for payment processing.  
 - Role-based access with real-time dashboards and visual reporting.  
 
----
-
 ## 2. Stakeholder Analysis  
 
 ### 2.1 Roles and Responsibilities  
 
 | **Role**              | **Key Responsibilities**                                         |  
 |-----------------------|------------------------------------------------------------------|  
-| **Admin**             | Manage suppliers, orders, inventory, logistics, and reports.     |  
+| **Admin**             | Manage users, orders, inventory, and reports.                    |  
 | **Supplier**          | Manage product listings, monitor inbound orders, view ratings.   |  
-| **Distributor/Agent** | Place outbound orders, track order statuses, view invoices.      |  
+| **Distributor**       | Place outbound orders, track order statuses, view invoices.      |  
 | **Logistics Partner** | Update delivery statuses, manage assigned orders.                |  
 
 ### 2.2 Access Permissions  
@@ -43,8 +41,6 @@ The system will be developed using **Nest.js** for backend, **Next.js** for fron
 | **Supplier**          | Limited to their own products and orders. | Edit products, view ratings.     |  
 | **Distributor**       | Outbound orders only.                     | Place, track orders.             |  
 | **Logistics Partner** | Assigned deliveries.                      | Update shipment statuses.        |  
-
----
 
 ## 3. Functional Requirements  
 
@@ -86,8 +82,6 @@ The system will be developed using **Nest.js** for backend, **Next.js** for fron
   - Operational costs (transportation, warehousing).  
 - Export formats: **PDF**, **Excel**, and **visual dashboards**.  
 
----
-
 ## 4. Non-Functional Requirements  
 
 - **Performance**: Support 100 concurrent users, scalable to 500.  
@@ -97,8 +91,6 @@ The system will be developed using **Nest.js** for backend, **Next.js** for fron
 - **Scalability**: Expandable for additional warehouses, suppliers, and logistics partners.  
 - **Localization**: Primary language: **Vietnamese**, with optional **English** support.  
 
----
-
 ## 5. Assumptions  
 
 1. **Data Initialization:**  
@@ -107,8 +99,6 @@ The system will be developed using **Nest.js** for backend, **Next.js** for fron
    - Users will have internet access and compatible devices (desktop or mobile).  
 3. **Third-Party Integrations:**  
    - Payment gateways like **Momo** and **VNPAY** provide stable and documented APIs.  
-
----
 
 ## 6. Risks  
 
@@ -125,8 +115,6 @@ The system will be developed using **Nest.js** for backend, **Next.js** for fron
 3. **Resource Risks:**  
    - **Timeline Constraints:** Tight deadline may require trade-offs.  
      *Mitigation:* Define Minimum Viable Product (MVP).  
-
----
 
 ## 7. UX/UI Requirements  
 
@@ -149,8 +137,6 @@ The system will be developed using **Nest.js** for backend, **Next.js** for fron
 ### 7.5 Logistics  
 - **Delivery Overview**: Track deliveries in progress.  
 - **Update Form**: Simple interface for status changes.  
-
----
 
 ## 8. Acceptance Criteria and Deliverables  
 
