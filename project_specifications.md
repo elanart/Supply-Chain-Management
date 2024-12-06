@@ -29,24 +29,24 @@ The system will be developed using **Nest.js** for backend, **Next.js** for fron
 | **Role**              | **Key Responsibilities**                                         |  
 |-----------------------|------------------------------------------------------------------|  
 | **Admin**             | Manage users, orders, inventory, and reports.                    |  
-| **Supplier**          | Manage product listings, monitor inbound orders, view ratings.   |  
+| **Supplier**          | Manage products, inbound orders, view ratings.                   |  
 | **Distributor**       | Place outbound orders, track order statuses, view invoices.      |  
 | **Logistics Partner** | Update delivery statuses, manage assigned orders.                |  
 
 ### 2.2 Access Permissions  
 
-| **Role**              | **Access**                                | **Actions**                      |  
-|-----------------------|-------------------------------------------|----------------------------------|  
-| **Admin**             | Full                                      | CRUD on all entities, reporting. |  
-| **Supplier**          | Limited to their own products and orders. | Edit products, view ratings.     |  
-| **Distributor**       | Outbound orders only.                     | Place, track orders.             |  
-| **Logistics Partner** | Assigned deliveries.                      | Update shipment statuses.        |  
+| **Role**              | **Access**                                | **Actions**                                   |  
+|-----------------------|-------------------------------------------|-----------------------------------------------|  
+| **Admin**             | Full                                      | CRUD on all entities, reporting.              |  
+| **Supplier**          | Limited to their own products and orders. | Edit products & inbound orders, view ratings. |  
+| **Distributor**       | Outbound orders only.                     | Place, track outbound orders.                 |  
+| **Logistics Partner** | Assigned deliveries.                      | Update shipment statuses.                     |  
 
 ## 3. Functional Requirements  
 
 ### 3.1 Supplier Management  
-- Add/Edit/Delete supplier details (e.g., name, address, MST, payment terms).  
-- **Rating System**: Score suppliers on criteria (e.g., timeliness, quality) using a 10-point scale. Ratings computed automatically, adjustable by admin.  
+- Add/Edit/Delete supplier details.  
+- **Rating System**: Score suppliers on criteria (e.g., timeliness, quality, pricing) using a 10-point scale. Ratings computed automatically, adjustable by admin.
 
 ### 3.2 Order Management  
 
@@ -56,13 +56,12 @@ The system will be developed using **Nest.js** for backend, **Next.js** for fron
 - Notifications via **email** and **SMS** for status updates.  
 
 #### Outbound Orders  
-- Place orders for customers/distributors.  
+- Place orders for distributors.  
 - Status tracking: Same workflow as inbound orders.  
 
 ### 3.3 Inventory Management  
 - **Tracking**: Real-time inventory by SKU, batch, or product.  
-- **Alerts**: Notify admin and suppliers when stock levels fall below a threshold.  
-- **Replenishment Recommendations**: Predict inventory needs using historical trends.
+- **Alerts**: Notify admin when stock levels fall below a threshold. 
 
 ### 3.4 Logistics and Delivery  
 - Assign deliveries to logistics partners.  
@@ -71,7 +70,7 @@ The system will be developed using **Nest.js** for backend, **Next.js** for fron
 - Future: GPS-based location tracking for shipments.  
 
 ### 3.5 Pricing and Payment  
-- **Dynamic Pricing**: Configure prices per product and service (e.g., transport, storage).  
+- **Pricing**: Configure prices per product and service (e.g., transport, storage).  
 - **Online Payments**: Integration with **Momo** and **VNPAY** for seamless transactions.  
 - Invoice generation and payment status tracking.  
 
@@ -87,9 +86,8 @@ The system will be developed using **Nest.js** for backend, **Next.js** for fron
 - **Performance**: Support 100 concurrent users, scalable to 500.  
 - **Security**:  
   - Role-based access control (RBAC).  
-  - Data encryption and secure communication using **SSL/TLS**.  
+  - Data encryption and secure communication.  
 - **Scalability**: Expandable for additional warehouses, suppliers, and logistics partners.  
-- **Localization**: Primary language: **Vietnamese**, with optional **English** support.  
 
 ## 5. Assumptions  
 
