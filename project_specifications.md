@@ -1,153 +1,109 @@
-# Software Requirements Specification (SRS)  
+# Domestic Logistics System
 
-## 1. Introduction  
+## Overview
+Hệ thống logistics nội địa được thiết kế để tối ưu hóa các hoạt động logistics trong nước, tập trung vào quy trình đơn giản hóa từ đặt hàng inbound đến giao hàng outbound. Hệ thống sẽ kết nối giữa bên logistics, nhà cung cấp, dịch vụ vận chuyển và khách hàng.
 
-### 1.1 Purpose  
-The purpose of this document is to define the software requirements for a **Supply Chain Management (SCM)** system. The system will streamline supplier management, order processing, inventory control, logistics, pricing, and reporting, focusing on operational efficiency and cost-effectiveness.  
+- **Mục tiêu**: Cung cấp một nền tảng tập trung để quản lý và tối ưu hóa các hoạt động logistics nội địa.
+- **Tính năng chính**:
+  - Quản lý thông tin nhà cung cấp, đánh giá và xếp hạng các nhà cung cấp.
+  - Quản lý các đơn hàng nhập kho và xuất kho, theo dõi trạng thái của đơn hàng.
+  - Quản lý kho và theo dõi tồn kho theo thời gian thực.
+  - Quản lý việc vận chuyển hàng và thông tin đơn vị vận chuyển.
+  - Quản lý đơn giá của hàng hóa và các chi phí liên quan đến vận chuyển và lưu trữ hàng tồn kho.
+  - Quản lý hóa đơn cho các nhà cung cấp và đại lý.
+  - Phân tích và báo cáo: Cung cấp các báo cáo chi tiết về tình trạng tồn kho, bao gồm mức tồn kho hiện tại, hàng hóa sắp hết hạn và hàng hóa hết hạn. Ngoài ra cần cung cấp các báo cáo về hiệu suất của các nhà cung cấp dựa trên các chỉ số như chất lượng, giao hàng đúng hạn và giá cả.
+- **Nice to have**:
+  - Kênh hỗ trợ khách hàng: Cung cấp các kênh hỗ trợ khách hàng để giải quyết các vấn đề liên quan đến đơn hàng, giao hàng và các vấn đề khác.
+- **Phạm vi**: Giới hạn trong các hoạt động logistics nội địa.
 
-### 1.2 Scope  
-The SCM system will be developed for use within Ho Chi Minh City to manage supply chain activities, including:  
-- Supplier management  
-- Order management (inbound/outbound)  
-- Inventory management  
-- Logistics and delivery  
-- Pricing and payments  
-- Reporting and analytics  
+## Pain Points
+1. **Quy trình phức tạp**: Khó khăn trong việc phối hợp giữa các nhà cung cấp, vận chuyển và quản lý kho.
+2. **Thiếu khả năng theo dõi**: Khó theo dõi trạng thái đơn hàng và tồn kho theo thời gian thực.
+3. **Sai sót thủ công**: Dễ xảy ra lỗi trong quy trình xử lý đơn hàng và lưu trữ dữ liệu.
+4. **Tối ưu nguồn lực kém**: Chưa sử dụng hiệu quả các nguồn lực vận chuyển và lưu trữ.
 
-The system will be developed using **Nest.js** for backend, **Next.js** for frontend, and deployed within a tight timeline of **1 month**.  
+## Acceptance Criteria
+1. **Quản lý Nhà cung cấp**:
+   - Thêm/Sửa/Xóa nhà cung cấp.
+   - Lưu trữ và quản lý thông tin chi tiết về nhà cung cấp như tên, địa chỉ, số điện thoại, thông tin liên hệ, và điều kiện thanh toán.
+   - Đánh giá và xếp hạng nhà cung cấp dựa trên các tiêu chí như chất lượng, giao hàng đúng hạn và giá cả.
 
-### 1.3 Key Features  
-- Comprehensive order lifecycle management with status tracking.  
-- Automatic supplier evaluation and inventory alerts.  
-- Integration with **Momo** and **VNPAY** for payment processing.  
-- Role-based access with real-time dashboards and visual reporting.  
+2. **Quản lý Đơn hàng**:
+   - Tạo đơn hàng nhập/xuất kho và gửi đến nhà cung cấp/đại lý để xác nhận và theo dõi trạng thái đơn hàng.
+   - Cung cấp tính năng xác nhận hoặc hủy đơn hàng trong các trường hợp cần thiết.
+   - Cập nhật trạng thái đơn hàng theo thời gian thực.
 
-## 2. Stakeholder Analysis  
+3. **Quản lý Kho**:
+   - Theo dõi số lượng hàng tồn kho.
+   - Kiểm tra và cập nhật số lượng hàng trong kho khi có đơn hàng nhập/xuất kho.
+   - Cung cấp thông tin về hàng hóa sắp hết hạn hoặc đã hết hạn.
 
-### 2.1 Roles and Responsibilities  
+4. **Quản lý Giao hàng & đơn vị vận chuyển**:
+   - Lên lịch và tổ chức giao hàng từ kho đến các địa điểm yêu cầu.
+   - Theo dõi tình trạng và vị trí hàng hóa trong quá trình vận chuyển.
+   - Quản lý thông tin và đánh giá hiệu suất đối tác vận chuyển.
 
-| **Role**              | **Key Responsibilities**                                         |  
-|-----------------------|------------------------------------------------------------------|  
-| **Admin**             | Manage users, orders, inventory, and reports.                    |  
-| **Supplier**          | Manage products, inbound orders, view ratings.                   |  
-| **Distributor**       | Place outbound orders, track order statuses, view invoices.      |  
-| **Logistics Partner** | Update delivery statuses, manage assigned orders.                |  
+5. **Quản lý Đơn giá & Thanh toán**:
+   - Theo dõi và quản lý đơn giá của hàng hóa từ các nhà cung cấp và chi phí liên quan đến vận chuyển và kho bãi.
+   - Quản lý thanh toán và hóa đơn, bao gồm các khoản phải trả và phải thu.
 
-### 2.2 Access Permissions  
+6. **Báo Cáo & Phân Tích**:
+   - Báo cáo chi tiết về tình trạng tồn kho, bao gồm mức tồn kho hiện tại, hàng hóa sắp hết hạn và hàng hóa hết hạn.
+   - Báo cáo hiệu suất nhà cung cấp dựa trên các chỉ số như chất lượng, giao hàng đúng hạn và giá cả.
 
-| **Role**              | **Access**                                | **Actions**                                   |  
-|-----------------------|-------------------------------------------|-----------------------------------------------|  
-| **Admin**             | Full                                      | CRUD on all entities, reporting.              |  
-| **Supplier**          | Limited to their own products and orders. | Edit products & inbound orders, view ratings. |  
-| **Distributor**       | Outbound orders only.                     | Place, track outbound orders.                 |  
-| **Logistics Partner** | Assigned deliveries.                      | Update shipment statuses.                     |  
+## Requirements
 
-## 3. Functional Requirements  
+### Functional Requirements
+1. **Quản lý Nhà cung cấp**:
+   - Thêm/Sửa/Xóa thông tin nhà cung cấp.
+   - Theo dõi hiệu suất và xếp hạng nhà cung cấp.
 
-### 3.1 Supplier Management  
-- Add/Edit/Delete supplier details.  
-- **Rating System**: Score suppliers on criteria (e.g., timeliness, quality, pricing) using a 10-point scale. Ratings computed automatically, adjustable by admin.
+2. **Quản lý Đơn hàng**:
+   - Tạo, xác nhận, hủy và cập nhật đơn hàng nhập/xuất kho.
+   - Theo dõi trạng thái đơn hàng theo thời gian thực.
 
-### 3.2 Order Management  
+3. **Quản lý Kho**:
+   - Theo dõi và cập nhật tồn kho tự động.
+   - Quản lý hàng hóa sắp hết hạn hoặc đã hết hạn.
 
-#### Inbound Orders  
-- Place orders with suppliers for restocking.  
-- Status tracking: **New → Confirmed → In Transit → Delivered → Cancelled**.  
-- Notifications via **email** and **SMS** for status updates.  
+4. **Quản lý Giao hàng**:
+   - Lên lịch và theo dõi vận chuyển.
+   - Quản lý thông tin và hiệu suất đối tác vận chuyển.
 
-#### Outbound Orders  
-- Place orders for distributors.  
-- Status tracking: Same workflow as inbound orders.  
+5. **Quản lý Thanh toán**:
+   - Theo dõi đơn giá và chi phí vận hành.
+   - Quản lý hóa đơn và thanh toán.
 
-### 3.3 Inventory Management  
-- **Tracking**: Real-time inventory by SKU, batch, or product.  
-- **Alerts**: Notify admin when stock levels fall below a threshold. 
+6. **Báo cáo & Phân tích**:
+   - Tạo báo cáo chi tiết về tồn kho và hiệu suất nhà cung cấp.
 
-### 3.4 Logistics and Delivery  
-- Assign deliveries to logistics partners.  
-- Status tracking: **Scheduled → Picking Up → In Transit → Delivered → Cancelled**.  
-- Manual updates by logistics partners.  
-- Future: GPS-based location tracking for shipments.  
+### Non-Functional Requirements
+1. **Hiệu năng**:
+   - Hỗ trợ tối đa 1,000 đơn hàng đang hoạt động đồng thời.
+   - Thời gian phản hồi dưới 2 giây cho các tác vụ thông thường.
 
-### 3.5 Pricing and Payment  
-- **Pricing**: Configure prices per product and service (e.g., transport, storage).  
-- **Online Payments**: Integration with **Momo** and **VNPAY** for seamless transactions.  
-- Invoice generation and payment status tracking.  
+2. **Bảo mật**:
+   - Mã hóa dữ liệu nhạy cảm.
+   - Tuân thủ các quy định bảo mật dữ liệu nội địa.
 
-### 3.6 Reporting and Analytics  
-- Reports include:  
-  - Inventory levels, stockouts, and expiring items.  
-  - Supplier performance (delivery rates, quality scores).  
-  - Operational costs (transportation, warehousing).  
-- Export formats: **PDF**, **Excel**, and **visual dashboards**.  
+3. **Khả năng Mở rộng**:
+   - Cho phép tích hợp thêm dịch vụ hoặc tăng số lượng người dùng trong tương lai.
 
-## 4. Non-Functional Requirements  
+4. **Khả dụng**:
+   - Đảm bảo hệ thống hoạt động ổn định với thời gian uptime 99.5%.
 
-- **Performance**: Support 100 concurrent users, scalable to 500.  
-- **Security**:  
-  - Role-based access control (RBAC).  
-  - Data encryption and secure communication.  
-- **Scalability**: Expandable for additional warehouses, suppliers, and logistics partners.  
+## Timeline
+1. **Phase 1: Thiết kế Boilerplate & xây dựng Flow và Core Data Model (Tuần 1)**:
+   - Thiết lập kiến trúc dự án và cài đặt các công cụ phát triển cơ bản.
+   - Định nghĩa luồng chảy các quy trình nghiệp vụ.
+   - Xây dựng các model dữ liệu chính và quan hệ giữa chúng.
 
-## 5. Assumptions  
+2. **Phase 2: Implement Code & Testing (Tuần 2 - 4)**:
+   - Phát triển các tính năng theo Functional Requirements.
+   - Tích hợp API cần thiết.
+   - Kiểm tra chức năng, bảo mật và hiệu năng.
+   - Sửa lỗi và tinh chỉnh hệ thống.
 
-1. **Data Initialization:**  
-   - Admin will manually input initial datasets for testing and operational readiness.  
-2. **System Usage:**  
-   - Users will have internet access and compatible devices (desktop or mobile).  
-3. **Third-Party Integrations:**  
-   - Payment gateways like **Momo** and **VNPAY** provide stable and documented APIs.  
-
-## 6. Risks  
-
-1. **Operational Risks:**  
-   - **Unclear Requirements:** May lead to rework.  
-     *Mitigation:* Regular meetings to validate features.  
-   - **Manual Processes:** Risk of inaccuracy in logistics updates.  
-     *Mitigation:* Future-proof system design for GPS tracking.  
-
-2. **Technical Risks:**  
-   - **Integration Challenges:** Issues with third-party APIs.  
-     *Mitigation:* Test APIs early and maintain fallback mechanisms.  
-
-3. **Resource Risks:**  
-   - **Timeline Constraints:** Tight deadline may require trade-offs.  
-     *Mitigation:* Define Minimum Viable Product (MVP).  
-
-## 7. UX/UI Requirements  
-
-### 7.1 Dashboard  
-- Overview of orders, inventory, supplier ratings, and operational KPIs.  
-- Visual elements: **Graphs, Charts, Notifications**.  
-
-### 7.2 Supplier Management  
-- **List View**: Filter by ratings, location, or status.  
-- **Detail View**: Full profile with ratings and transaction history.  
-
-### 7.3 Order Management  
-- **Tabs**: Separate inbound/outbound orders.  
-- **Order Details**: View/edit order statuses, send notifications.  
-
-### 7.4 Inventory Management  
-- **Stock Overview**: Real-time visibility of all SKUs.  
-- **Low Stock Alerts**: Prominent display for urgent actions.  
-
-### 7.5 Logistics  
-- **Delivery Overview**: Track deliveries in progress.  
-- **Update Form**: Simple interface for status changes.  
-
-## 8. Acceptance Criteria and Deliverables  
-
-### 8.1 Acceptance Criteria  
-1. Users can perform end-to-end order management (inbound and outbound orders).  
-2. Inventory levels are tracked in real-time with low-stock alerts.  
-3. Integration with **Momo** and **VNPAY** for payments.  
-4. Generate operational reports in **PDF** and **Excel** formats.  
-5. System handles at least **100 concurrent users** and scales to **500 users** without significant latency.  
-
-### 8.2 Deliverables  
-1. **Backend Services:** APIs for order management, inventory tracking, and payment processing.  
-2. **Frontend Application:** Responsive web interface for all user roles.  
-3. **Documentation:** User manual and technical documentation.  
-4. **Deployment:** Functional system deployed to staging and live environments.  
-5. **Test Results:** Comprehensive test cases and results.  
+3. **Phase 3: Deploy và Maintain (Tuần 5  - 6)**:
+   - Triển khai sản phẩm và theo dõi hiệu quả.
+   - Xử lý vấn đề phát sinh và cải thiện tính năng.
